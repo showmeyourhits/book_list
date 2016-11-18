@@ -2,24 +2,44 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/style/main.css">
 	<script type="text/javascript" src=""></script>
 	<title>Book List</title>
 </head>
 <body>
-<div>
-	<aside>
-		<form action="#">
-			<label for="publ_year"><select id="publ_year" name="publ_year"></select></label>
-			<input type="text" name="author" placeholder="Author..." required>
-			<input type="text" name="book_name" placeholder="Book name..." required>
-			<input type="number" name="pages" placeholder="Pages...">
-			<button type="submit">ADD</button>
+<header>
+	<div class="app-title"><h1>Book List</h1></div>
+</header>
+<div class="container">
+	<aside class="sidebar">
+		<form class="add-form" action="#">
+			<fieldset>
+				<legend>Add a book</legend>
+				<label class="add-form__label" for="author">Author</label>
+				<input id="author" class="add-form__input" type="text" name="author" placeholder="Author..." required>
+				
+				<label class="add-form__label" for="book-title">Title</label>
+				<input id="book-title" class="add-form__input" type="text" name="book_title" placeholder="Book title..." required>
+				<div class="add-form__delimeter"></div>
+				
+				<label class="add-form__label" for="publ_year">Publicated</label>
+				<select id="publ_year" class="add-form__input" name="publ_year">
+					<option selected>Year</option>
+				</select>
+				
+				<label class="add-form__label" for="qnt-pages">Pages</label>
+				<input id="qnt-pages" class="add-form__input" type="number" name="pages" placeholder="Pages...">
+				
+				<button id="btn--add" class="btn add-form__btn" type="submit">Add book</button>
+			</fieldset>
 		</form>
 	</aside>
-	<section>
-		<div>List is empty.</div>
-		<table>
-			<thead>
+	<section class="content">
+		<div class="note--empty">List is empty.</div>
+		<table class="book-list">
+			<thead class="book-list__header">
 				<tr>
 					<th>Readed</th>
 					<th>Year</th>
@@ -29,7 +49,83 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				<!-- test -->
+				<tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1984</td>
+					<td>R.R. Martin</td>
+					<td>The  Bad</td>
+					<td>666</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>
+				<tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1984</td>
+					<td>R.R. Masdddddddddddasdartin</td>
+					<td>The  Bad</td>
+					<td>666</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>
+				<tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1984</td>
+					<td>R.R. Martin</td>
+					<td>Tadsadasdhe  Bad</td>
+					<td>66124124124124</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>
+				<tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1984</td>
+					<td>R.R. Martin</td>
+					<td>The  Bad</td>
+					<td>666</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>
+				<tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1984</td>
+					<td>George Martin</td>
+					<td>THE</td>
+					<td>616</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr><tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1201</td>
+					<td>George R.R. Martin</td>
+					<td>The FUCKING Bad</td>
+					<td>666</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr><tr class="book-list__row">
+					<td><input type="checkbox"></td>
+					<td>1924</td>
+					<td> R.R. Martin</td>
+					<td>TRUE Breaking Bad</td>
+					<td>66126</td>
+					<td>
+						<button class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button>
+						<button class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>	
+				<!-- test -->
 			</tbody>
 		</table>
 	</section>
