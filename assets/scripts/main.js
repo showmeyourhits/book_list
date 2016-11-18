@@ -190,6 +190,8 @@ document.getElementById("add-form").addEventListener("submit", function(event){
 	
 	BL.addBookToList();
 	BL.toggleMessage();
+
+	$("#book-list").trigger("update");
 }, false)
 
 document.getElementById("book-list").addEventListener("click", function(event){
