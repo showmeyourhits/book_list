@@ -98,7 +98,6 @@ body{
 .book-list__row td:hover{
 	overflow: visible;
 }
-
 .book-list__del,
 .book-list__edit{
 	visibility: hidden;
@@ -112,6 +111,9 @@ body{
 	visibility: visible;
 }
 .btn__label--alt{
+	display: none;
+}
+.tr-template{
 	display: none;
 }
 
@@ -128,8 +130,11 @@ body{
 		display: block;
 	}
 	.content{
-		padding: 0px 15px;
+		padding: 0px 15px 15px 15px;
 		display: block;
+	}
+	.book-list{
+		width: 100%;
 	}
 	.book-list__del,
 	.book-list__edit{
