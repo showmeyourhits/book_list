@@ -1,0 +1,17 @@
+th.book-list__th{
+	background-image: url(../img/bg.gif); 
+    cursor: pointer; 
+    background-repeat: no-repeat; 
+    background-position: center right; 
+    padding-right: 20px;
+}
+th.book-list__th--up { 
+	background-color: #BBB3C7;
+    background-image: url(../img/asc.gif); 
+    background-position: center right;
+} 
+th.book-list__th--down { 
+	background-color: #87789C; 
+    background-image: url(../img/desc.gif); 
+    background-position: center right;
+} 

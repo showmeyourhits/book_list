@@ -5,7 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/style/main.css">
-	<script type="text/javascript" src=""></script>
+	<link rel="stylesheet" type="text/css" href="assets/style/tablesorter.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="assets/scripts/jquery.tablesorter.min.js"></script>
 	<title>Book List</title>
 </head>
 <body>
@@ -18,39 +20,50 @@
 			<fieldset>
 				<legend>Add a book</legend>
 				<label class="add-form__label" for="author">Author</label>
-				<input id="author" class="add-form__input" type="text" name="author" placeholder="Author..." required>
+				<input id="author" class="text-input add-form__input" type="text" name="author" placeholder="Author..." required>
 				
 				<label class="add-form__label" for="book-title">Title</label>
-				<input id="book-title" class="add-form__input" type="text" name="book_title" placeholder="Book title..." required>
+				<input id="book-title" class="text-input add-form__input" type="text" name="book_title" placeholder="Book title..." required>
 				<div class="add-form__delimeter"></div>
 				
 				<label class="add-form__label" for="publ_year">Publicated</label>
-				<select id="publ-year" class="add-form__input" name="publ_year">
+				<select id="publ-year" class="text-input add-form__input" name="publ_year">
 					<option selected>Year</option>
 				</select>
 				
 				<label class="add-form__label" for="qnt-pages">Pages</label>
-				<input id="qnt-pages" class="add-form__input" type="number" name="pages" placeholder="Pages...">
+				<input id="qnt-pages" class="text-input add-form__input" type="number" name="pages" placeholder="Pages...">
 				
-				<button id="btn--add" class="btn add-form__btn" type="submit">Add book</button>
+				<button id="btn--add" class="add-form__btn" type="submit">Add book</button>
 			</fieldset>
 		</form>
 	</aside>
 	<section class="content">
 		<div class="note--empty" id="message">List is empty.</div>
-		<table class="book-list" id="book-list">
+		<table class="book-list tablesorter" id="book-list">
 			<thead class="book-list__header">
 				<tr>
-					<th>Readed</th>
-					<th>Year</th>
-					<th>Author</th>
-					<th>Title</th>
-					<th>Pages</th>
+					<th class="book-list__th">Readed</th>
+					<th class="book-list__th">Year</th>
+					<th class="book-list__th">Author</th>
+					<th class="book-list__th">Title</th>
+					<th class="book-list__th">Pages</th>
 				</tr>
 			</thead>
 			<tbody id="list-body">
 				
-				<tr class="book-list__row tr-template"><td><input data-action="read" type="checkbox"></td><td></td><td></td><td></td><td></td><td><button data-action="edit" class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button><button data-action="delete" class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button></td></tr>
+				<tr class="book-list__row tr-template" id="tr-template"><td><input data-action="read" type="checkbox"><span class="btn__label--alt">0</span></td><td></td><td></td><td></td><td></td><td><button data-action="edit" class="btn book-list__edit"><span class="btn__label--alt">Edit </span><i class="fa fa-pencil"></i></button><button data-action="delete" class="btn book-list__del"><span class="btn__label--alt">Del </span><i class="fa fa-trash"></i></button></td></tr>
+
+				<tr class="book-list__row tr-template tr-edit tr-template--edit" id="tr-template--edit">
+					<td><input class="text-input tr-edit__input" data-action="read" type="checkbox"></td>
+					<td><input class="text-input tr-edit__input" type="number" placeholder="Year"></td>
+					<td><input class="text-input tr-edit__input" type="text" placeholder="Author" required></td>
+					<td><input class="text-input tr-edit__input" type="text" placeholder="Title" required></td>
+					<td><input class="text-input tr-edit__input" type="number" placeholder="Pages"></td>
+					<td>
+						<button data-action="save" class="btn book-list__edit"><span class="btn__label--alt">Save </span><i class="fa fa-floppy-o"></i></button>
+					</td>
+				</tr>
 
 			</tbody>
 		</table>

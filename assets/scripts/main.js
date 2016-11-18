@@ -52,14 +52,48 @@ var BL = (function(){
 	function makeListEntry(book, index){
 		let tr = trTemplate.cloneNode(true);
 		tr.classList.remove("tr-template");
+		tr.id = "";
 		tr.dataset.index = index;
 		tr.children[0].children[0].checked = book.readed;
+		if(book.readed){
+			tr.children[0].children[1].innerText = "1";
+		}
 		tr.children[1].innerText = book.year || "-";
 		tr.children[2].innerText = book.author;
 		tr.children[3].innerText = book.title;
 		tr.children[4].innerText = book.pages || "-";
 
 		return tr;
+	}
+
+	function makeTrEdit(tr, index){
+		let trEdit = trTemplateEdit.cloneNode(true);
+		trEdit.dataset.index = index;
+		trEdit.classList.remove("tr-template");
+		trEdit.classList.remove("tr-template--edit");
+		trEdit.id = "";
+
+		trEdit.querySelector("input").checked = tr.querySelector("input").checked;
+		for(let i = 1; i <= 4; i++){
+			let text = tr.children[i].innerText; 
+			trEdit.children[i].children[0].value = text === "-" ? "" : text;
+			console.log(tr.children[i].clientWidth);
+			trEdit.children[i].children[0].style.width = tr.children[i].clientWidth - 8 + "px"; 
+		}
+
+		return trEdit;
+	}
+
+	function makeBook(tr){
+		let book = {};
+
+		book.readed = tr.children[0].children[0].checked;
+		book.year = parseInt(tr.children[1].children[0].value) || 0;
+		book.author = tr.children[2].children[0].value;
+		book.title = tr.children[3].children[0].value;
+		book.pages = parseInt(tr.children[4].children[0].value) || 0;
+
+		return book;
 	}
 
 	function fillList(){
@@ -97,7 +131,7 @@ var BL = (function(){
 			case "delete":
 				bookList[index] = null;
 				console.log("Tbody children :", tr.parentElement.children.length);
-				if(tr.parentElement.children.length <= 2){
+				if(tr.parentElement.children.length <= 3){
 					BL.toggleMessage();
 				}
 				tr.remove();
@@ -105,21 +139,42 @@ var BL = (function(){
 				break;
 			
 			case "edit":
+				let trEdit = makeTrEdit(tr, index);
+
+				tr.parentElement.insertBefore(trEdit, tr);
+				tr.remove();
 
 				break;
+			case "save":
+				console.log("wanna save?");
+				let book = makeBook(tr);
+				if(book.author && book.title){
+					let newTr = makeListEntry(book, index);
+					tr.parentElement.insertBefore(newTr, tr);
+					tr.remove();
 
+					bookList[index] = book;
+				}else{
+					// alert("Please, fill the \"Author\" and \"Title\" fields.");
+					console.log("fill the fields fukko");
+				}
+				break;
 			case "read":
 				bookList[index].readed = element.checked;
+				element.parentElement.children[1].innerText = element.checked ? "1" : "0";
 				break;
 
 			default:
 				throw "oi mate wat are doin here?";
 		}
+
+		$("#book-list").trigger("update");
 	}
 	
 
 	let bookList = getBookList(),
-		trTemplate = document.querySelector(".tr-template");
+		trTemplate = document.getElementById("tr-template"),
+		trTemplateEdit = document.getElementById("tr-template--edit");
 
 	return {
 		updateStorage: updateStorage,
@@ -145,11 +200,29 @@ document.getElementById("book-list").addEventListener("click", function(event){
 		BL.takeAction(btn, action);
 	}
 }, false)
+
+document.querySelector(".book-list__header").addEventListener("click", function(event){
+	console.log(event.currentTarget);
+	let editing = document.getElementById("list-body").querySelectorAll(".tr-edit");
+	if(editing && editing.length > 1){
+		console.log("sorry, can't sort right now. Complete the editing first");
+		event.stopImmediatePropagation();
+	}
+}, true)
+
 window.addEventListener("unload",function(e){
-	// TODO: clean mess after deleting
 	BL.updateStorage();
-	//localStorage.removeItem("bookList");
 }, false);
 
 BL.toggleMessage();
 BL.fillList();
+
+
+$(function(){
+	$("#book-list").tablesorter({
+		cssHeader: "book-list__th",
+		cssAsc: "book-list__th--up",
+		cssDesc: "book-list__th--down"
+	});
+	
+});

@@ -29,12 +29,14 @@ body{
 	padding-bottom: 5px; 
 
 }
-.add-form__input{
-	padding: 5px;
-	margin-bottom:10px;
+.text-input{
 	border-radius: 2px;
 	border: 2px solid lightgray;
 	background-color: white;
+}
+.add-form__input{
+	padding: 5px;
+	margin-bottom:10px;
 }
 .add-form__delimeter{
 	display: none;
@@ -94,12 +96,12 @@ body{
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	font-size: .8rem;
 }
 .book-list__row td:hover{
 	overflow: visible;
 }
-.book-list__del,
-.book-list__edit{
+.btn{
 	visibility: hidden;
 	font-size: 1.2rem;
 	background-color: white;
@@ -116,7 +118,17 @@ body{
 .tr-template{
 	display: none;
 }
-
+.tr-template--edit input{
+	font-size: .8rem;
+}
+.tr-edit td{
+	padding: 5px 0px;
+}
+.tr-edit__input{
+	border: 0px;
+	border-bottom: 1px solid lightgray;
+	padding: 5px 0px;
+}
 
 @media (max-width: 768px){
 	.sidebar{
